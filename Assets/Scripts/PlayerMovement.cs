@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//CHECK
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
     }
-
+    
     // Runs every frame to change player's movement direction
     private void Update()
     {
