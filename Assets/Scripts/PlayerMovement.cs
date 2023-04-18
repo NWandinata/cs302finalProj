@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Updates horizontal movement (vertical is kept the same)
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
+        body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, body.velocity.y);
 
         // Jump when space is pressed
         if (Input.GetKey(KeyCode.Space) && grounded)
