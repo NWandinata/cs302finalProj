@@ -19,8 +19,12 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, body.velocity.y);
 
         // Jump when space is pressed
-        if (Input.GetKey(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
             Jump();
+
+        // Adjust height
+        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
     }
 
     private void Jump()
