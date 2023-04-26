@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Damage : MonoBehaviour
 {
     public SpriteRenderer player;
     //private List<Color> colors;
     public int life = 3;
+    public int armor = 0;
 
     // Start is called before the first frame update
     void Start() //make an obstacle to hit
     {
+        life = Shop.health + life;
+        armor = Shop.armor + armor;
         player = GetComponent<SpriteRenderer>();
         /*colors = new List<Color>();
         colors.Add(Color.green);
