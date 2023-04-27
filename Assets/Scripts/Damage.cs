@@ -9,7 +9,7 @@ public class Damage : MonoBehaviour
 {
     public SpriteRenderer player;
     //private List<Color> colors;
-    public int life = 3;
+
     public int armor = 0;
     public Rigidbody2D square; //still the player
     private int life = 3;
