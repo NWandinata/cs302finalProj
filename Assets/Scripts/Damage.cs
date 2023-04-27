@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Damage : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class Damage : MonoBehaviour
     //private List<Color> colors;
     public int life = 3;
     public int armor = 0;
+    public Rigidbody2D square; //still the player
+    private int life = 3;
+
 
     // Start is called before the first frame update
     void Start() //make an obstacle to hit
@@ -32,13 +37,15 @@ public class Damage : MonoBehaviour
     {
         if (collision.gameObject.name == "Obstacle")
         {
-            Damage_Taken(player);
+            Damage_Taken(player, square);
+
         }
     }
 
-    public void Damage_Taken(SpriteRenderer play)
+    public void Damage_Taken(SpriteRenderer play, Rigidbody2D rb)
     {
         life--;
+
         if (life == 2)
         {
             play.GetComponent<SpriteRenderer>().color = Color.yellow;
@@ -51,8 +58,18 @@ public class Damage : MonoBehaviour
 
         else if (life <= 0)
         {
-            Destroy(play);
-            //maybe restart level
+            //Destroy(play); //dies
+
+            if (SceneManager.GetActiveScene().name == "Level1")
+            {
+                //respawn
+                Vector2 newPos = new ((float)-4.935843, (float)-2.25);
+                rb.MovePosition(newPos);
+            }
+
+            life = 3;
+            play.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
+
 }
