@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
         // Adjust height
         if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
+
+        // Fast fall
+        if (Input.GetKeyDown(KeyCode.DownArrow) && body.velocity.y > 0)
+            body.velocity = new Vector2(body.velocity.x, -2);
     }
 
     private void Jump()
@@ -37,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.tag == "Ground")
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;

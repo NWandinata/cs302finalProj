@@ -20,7 +20,7 @@ public class SpinDamage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && square.angularVelocity >= 3)
         {
-            Debug.Log("Hit 2");
+            Debug.Log("Spin Kill");
             enemy Enemy = enemyBody.GetComponent<enemy>();
 
             if (Enemy != null)

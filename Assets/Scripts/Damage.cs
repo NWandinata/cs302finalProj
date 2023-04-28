@@ -38,19 +38,12 @@ public class Damage : MonoBehaviour
         if (collision.gameObject.name == "Obstacle")
         {
             Damage_Taken(player, square);
-            square.velocity = new Vector2(square.velocity.x, 8);
+            square.velocity = new Vector2(square.velocity.x , 8);
         }
 
         if (collision.gameObject.name == "Enemy" && square.angularVelocity < 3)
         {
             Damage_Taken(player, square);
-            Debug.Log("Fail");
-        }
-
-        // Debugging
-        else if (collision.gameObject.name == "Enemy" && square.angularVelocity >= 3)
-        {
-            Debug.Log("Hit");
         }
     }
 
