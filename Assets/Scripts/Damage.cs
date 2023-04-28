@@ -38,7 +38,19 @@ public class Damage : MonoBehaviour
         if (collision.gameObject.name == "Obstacle")
         {
             Damage_Taken(player, square);
+            square.velocity = new Vector2(square.velocity.x, 8);
+        }
 
+        if (collision.gameObject.name == "Enemy" && square.angularVelocity < 3)
+        {
+            Damage_Taken(player, square);
+            Debug.Log("Fail");
+        }
+
+        // Debugging
+        else if (collision.gameObject.name == "Enemy" && square.angularVelocity >= 3)
+        {
+            Debug.Log("Hit");
         }
     }
 
@@ -63,7 +75,8 @@ public class Damage : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Level1")
             {
                 //respawn
-                Vector2 newPos = new ((float)-4.935843, (float)-2.25);
+                //Vector2 newPos = new ((float)-4.935843, (float)-2.25);
+                Vector2 newPos = new((float)-7.43, (float)-2.01);
                 rb.MovePosition(newPos);
             }
 
