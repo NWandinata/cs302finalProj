@@ -7,11 +7,20 @@ public class Shop : MonoBehaviour
     public static int health=0;
     public static int armor = 0;
     public static int speed = 0;
+    public static int damage = 0;
     public void addhealth()
     {
         if (CoinCollector.coins > 0)
         {
             health++;
+            CoinCollector.coins = CoinCollector.coins - 1;
+        }
+    }
+    public void adddamage()
+    {
+        if (CoinCollector.coins > 0)
+        {
+            damage++;
             CoinCollector.coins = CoinCollector.coins - 1;
         }
     }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    public int health = 3;
+    public static int health = 3;
 
     public GameObject deathEffect;
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        health =health-damage-Shop.damage;
 
         if(health <= 0)
         {
