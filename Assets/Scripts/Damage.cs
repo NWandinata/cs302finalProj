@@ -41,7 +41,7 @@ public class Damage : MonoBehaviour
             square.velocity = new Vector2(square.velocity.x , 8);
         }
 
-        if (collision.gameObject.name == "Enemy" && square.angularVelocity < 3)
+        if (collision.gameObject.tag == "Enemy" && square.angularVelocity < 3)
         {
             Damage_Taken(player);
         }
