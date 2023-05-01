@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed;
     private Rigidbody2D body;
     private bool grounded;
+    public bool falling;
+    float falltime = 5F;
+    float MaxFallTime = 10.0F;
 
     // Runs when game starts (i.e. script is loaded)
     private void Awake()
@@ -31,6 +34,24 @@ public class PlayerMovement : MonoBehaviour
         // Fast fall
         if (Input.GetKeyDown(KeyCode.DownArrow) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, -2);
+        if (grounded)
+        {
+            falling = true;
+        }
+        else
+        {
+            falling = false;
+        }
+        if (falling)
+        {
+
+            falltime += Time.deltaTime;
+            if (falltime >= MaxFallTime)
+            {
+                SceneManager.LoadScene("Level1");
+            }
+        }
+
     }
 
     private void Jump()
