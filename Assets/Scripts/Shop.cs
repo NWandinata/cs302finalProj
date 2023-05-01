@@ -4,15 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Shop : MonoBehaviour
 {
-    public static int health=0;
-    public static int armor = 0;
-    public static int speed = 0;
-    public static int damage = 0;
+    public static Dictionary<string, int> map = new Dictionary<string, int>
+    {{"health",0},
+        {"armor",0 },
+        {"speed",0 },
+        {"damage",0 }
+
+    };
+
     public void addhealth()
     {
         if (CoinCollector.coins > 0)
         {
-            health++;
+            map["health"]++;
             CoinCollector.coins = CoinCollector.coins - 1;
         }
     }
@@ -20,7 +24,7 @@ public class Shop : MonoBehaviour
     {
         if (CoinCollector.coins > 0)
         {
-            damage++;
+            map["damage"]++;
             CoinCollector.coins = CoinCollector.coins - 1;
         }
     }
@@ -28,7 +32,7 @@ public class Shop : MonoBehaviour
     {
         if (CoinCollector.coins > 0)
         {
-            armor++;
+            map["armor"]++;
             CoinCollector.coins = CoinCollector.coins - 1;
         }
     }
@@ -36,7 +40,7 @@ public class Shop : MonoBehaviour
     {
         if (CoinCollector.coins > 0)
         {
-            speed++;
+            map["speed"]++;
             CoinCollector.coins = CoinCollector.coins - 1;
         }
     }

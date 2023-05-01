@@ -18,8 +18,8 @@ public class Damage : MonoBehaviour
     // Start is called before the first frame update
     void Start() //make an obstacle to hit
     {
-        life = Shop.health + life;
-        armor = Shop.armor + armor;
+        life = Shop.map["health"] + life;
+        armor = Shop.map["armor"] + armor;
         player = GetComponent<SpriteRenderer>();
         /*colors = new List<Color>();
         colors.Add(Color.green);

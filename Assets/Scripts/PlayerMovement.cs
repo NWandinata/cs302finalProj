@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     // Runs when game starts (i.e. script is loaded)
     private void Awake()
     {
-        speed = speed + Shop.speed;
+        speed = speed + Shop.map["speed"];
         body = GetComponent<Rigidbody2D>();
     }
 

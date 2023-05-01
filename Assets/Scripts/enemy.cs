@@ -10,7 +10,7 @@ public class enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health =health-damage-Shop.damage;
+        health =health-damage-Shop.map["damage"];
 
         if(health <= 0)
         {
