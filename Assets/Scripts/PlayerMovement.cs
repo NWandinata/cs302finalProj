@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.tag == "Ramp")
         {
+            grounded = false;
             body.velocity = new Vector2(body.velocity.x * 1.25f, 3);
             StartCoroutine(Spin());
         }

@@ -68,6 +68,7 @@ public class Damage : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Level1")
             {
                 //respawn
+                CoinCollector.coins = 0;
                 SceneManager.LoadScene("Level1");
             }
 
