@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool grounded;
     public bool falling;
-    float falltime = 5F;
-    float MaxFallTime = 10.0F;
+    //float falltime = 5F;
+    //float MaxFallTime = 10.0F;
 
     // Runs when game starts (i.e. script is loaded)
     private void Awake()
@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
         // Fast fall
         if (Input.GetKeyDown(KeyCode.DownArrow) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, -2);
-        if (grounded)
+
+        // Need to rework pit fall logic (does not play nicely with ramps)
+        /*if (grounded)
         {
             falling = true;
         }
@@ -44,13 +46,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (falling)
         {
-
             falltime += Time.deltaTime;
             if (falltime >= MaxFallTime)
             {
                 SceneManager.LoadScene("Level1");
             }
-        }
+        }*/
 
     }
 
@@ -65,6 +66,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
+
+            // Reorients player so firepoint is always forward when on ground
+            if (gameObject.transform.rotation.eulerAngles.z != 0 && collision.gameObject.tag != "Ramp")
+            {
+                Vector3 reOrient = new Vector3(0, 0, 0);
+                gameObject.transform.eulerAngles = reOrient;
+            }
         }
 
         if (collision.gameObject.tag == "Ramp")

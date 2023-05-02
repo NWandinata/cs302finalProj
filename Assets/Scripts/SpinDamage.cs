@@ -18,7 +18,7 @@ public class SpinDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && square.angularVelocity >= 3)
+        if (collision.gameObject.tag == "Player" && square.angularVelocity >= 8)
         {
             Debug.Log("Spin Kill");
             enemy Enemy = enemyBody.GetComponent<enemy>();

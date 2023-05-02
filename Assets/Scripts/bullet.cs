@@ -5,24 +5,59 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     public float speed = 20f;
+    private float direction;
+    private bool hit;
     public int damage = 1;
-    public Rigidbody2D rb;
+    private float lifetime;
+    private BoxCollider2D boxCollider;
+
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        rb.velocity = transform.right * speed;
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Update()
+    {
+        if (hit) return;
+        float travelSpeed = speed * Time.deltaTime * direction;
+        transform.Translate(travelSpeed, 0, 0);
+
+        lifetime += Time.deltaTime;
+        if (lifetime > 4) gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo) //when the enemy gets hit
     {
+        hit = true;
         enemy Enemy = hitInfo.GetComponent<enemy>();
 
-        if(Enemy != null)
+        if (Enemy != null)
         {
             Enemy.TakeDamage(damage);
         }
 
-        Destroy(gameObject);
+        boxCollider.enabled = false;
+        gameObject.SetActive(false);
     }
 
+    public void SetDirection(float bulletDirection)
+    {
+        lifetime = 0;
+        direction = bulletDirection;
+        gameObject.SetActive(true);
+        hit = false;
+        boxCollider.enabled = true;
+
+        float localScaleX = transform.localScale.x;
+        if (Mathf.Sign(localScaleX) != bulletDirection)
+            localScaleX = -localScaleX;
+
+        transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
+    }
+
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
 }
