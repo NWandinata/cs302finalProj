@@ -47,8 +47,9 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-
+        if(ShopLoader.currentLevelIndex == 1)
+            SceneManager.LoadScene(ShopLoader.currentLevelIndex + 2);
+        else
+            SceneManager.LoadScene(ShopLoader.currentLevelIndex + 1);
     }
 }

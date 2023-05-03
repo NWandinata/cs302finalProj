@@ -5,29 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class ShopLoader : MonoBehaviour
 {
-    private bool playerInZone;
     public string levelToLoad;
+    public static int currentLevelIndex;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerInZone = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (playerInZone)
-        {
-            SceneManager.LoadScene(levelToLoad);
-        }
-    }
-
+    // Loads shop upon player entering goal and helps shop track the next level to load
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "Player")
         {
-            playerInZone = true;
+            SceneManager.LoadScene(levelToLoad);
+            currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
         }
     }
 }
