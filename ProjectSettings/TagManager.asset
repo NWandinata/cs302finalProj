@@ -43,15 +43,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Ground
-    uniqueID: 3496528861
-    locked: 0
-  - name: Tiles
+  - name: Background
     uniqueID: 2493223125
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Collectible
+  - name: Entity
     uniqueID: 3480133009
+    locked: 0
+  - name: Ground
+    uniqueID: 3496528861
     locked: 0
