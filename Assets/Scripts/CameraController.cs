@@ -7,6 +7,6 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         // Sub in player.position.y to follow vertically
-        transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 }
