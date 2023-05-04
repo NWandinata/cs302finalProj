@@ -34,25 +34,6 @@ public class PlayerMovement : MonoBehaviour
         // Fast fall
         if (Input.GetKeyDown(KeyCode.DownArrow) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, -2);
-
-        // Need to rework pit fall logic (does not play nicely with ramps)
-        /*if (grounded)
-        {
-            falling = true;
-        }
-        else
-        {
-            falling = false;
-        }
-        if (falling)
-        {
-            falltime += Time.deltaTime;
-            if (falltime >= MaxFallTime)
-            {
-                SceneManager.LoadScene("Level1");
-            }
-        }*/
-
     }
 
     private void Jump()
@@ -78,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ramp")
         {
             grounded = false;
-            body.velocity = new Vector2(body.velocity.x * 1.25f, 3);
+            body.velocity = new Vector2(body.velocity.x * 2.5f, 3);
             StartCoroutine(Spin());
         }
 
@@ -87,14 +68,23 @@ public class PlayerMovement : MonoBehaviour
             body.velocity = new Vector2(body.velocity.x, 8);
             StartCoroutine(SpinRebound());
         }
+
+        // Temporarily stops spin on obstacles
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            body.freezeRotation = true;
+            body.freezeRotation = false;
+            Vector3 reOrient = new Vector3(0, 0, 0);
+            gameObject.transform.eulerAngles = reOrient;
+        }
     }
 
     IEnumerator Spin()
     {
-        if (body.angularVelocity < 15)
+        if (body.angularVelocity < 30)
         {
-            var impulse = 5 + body.inertia;
-            yield return new WaitForSeconds(0.25f);
+            var impulse = 10 + body.inertia;
+            yield return new WaitForSeconds(0.5f);
             body.velocity = new Vector2(body.velocity.x, 0);
             body.AddTorque(impulse, ForceMode2D.Impulse);
         }
@@ -102,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator SpinRebound()
     {
-        if (body.angularVelocity < 15 && body.angularVelocity > 1)
+        if (body.angularVelocity < 30 && body.angularVelocity > 1)
         {
             var impulse = 20 + body.inertia;
             yield return new WaitForSeconds(0.25f);
