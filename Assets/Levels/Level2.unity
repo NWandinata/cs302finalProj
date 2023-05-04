@@ -858,7 +858,7 @@ MonoBehaviour:
   player: {fileID: 1949783675}
   armor: 0
   square: {fileID: 1949783673}
-  fallPoint: 0
+  fallPoint: -25
 --- !u!114 &1949783672
 MonoBehaviour:
   m_ObjectHideFlags: 0
