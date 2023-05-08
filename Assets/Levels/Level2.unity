@@ -919,7 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8811b1383d820414a94e5e0362629509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinsText: {fileID: 2041384896}
+  coinsText: {fileID: 1567825220}
 --- !u!114 &222142060
 MonoBehaviour:
   m_ObjectHideFlags: 0
