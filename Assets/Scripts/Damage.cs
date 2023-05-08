@@ -40,6 +40,7 @@ public class Damage : MonoBehaviour
             square.velocity = new Vector2(square.velocity.x , 5); //when hit, the player moves upward
         }
 
+        // Player won't take damage against enemy collision if player is rotating fast enough
         if (collision.gameObject.tag == "Enemy" && square.angularVelocity < 10)
             Damage_Taken(player);
     }

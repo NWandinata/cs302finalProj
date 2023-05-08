@@ -9,7 +9,6 @@ public class SpinDamage : MonoBehaviour
     public GameObject player;
     public Rigidbody2D square;
 
-    // Start is called before the first frame update
     void Start()
     {
         enemySprite = GetComponent<SpriteRenderer>();
@@ -18,9 +17,10 @@ public class SpinDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // When the enemy collides with a spinning player, the enemy takes 3 damage
+        // (if the player spins at 10 radians/sec or greater).
         if (collision.gameObject.tag == "Player" && square.angularVelocity >= 10)
         {
-            Debug.Log("Spin Kill");
             enemy Enemy = enemyBody.GetComponent<enemy>();
 
             if (Enemy != null)
@@ -28,6 +28,7 @@ public class SpinDamage : MonoBehaviour
                 Enemy.TakeDamage(3);
             }
 
+            // All enemies have 3 hp, so this would be an instant kill
             Destroy(gameObject);
         }
     }

@@ -7,10 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool grounded;
     public bool falling;
-    //float falltime = 5F;
-    //float MaxFallTime = 10.0F;
-
-    // Runs when game starts (i.e. script is loaded)
+    
     private void Awake()
     {
         speed = speed + Shop.map["speed"];
@@ -27,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
             Jump();
 
-        // Adjust height
+        // Adjust height (jump height varies based on how long Space is held)
         if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
 
@@ -35,18 +32,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, -2);
     }
-    //jump based on velocity
+    
+    // Jump is based on speed 
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed - 1);
         grounded = false;
     }
-    //player collision
+    
+    // Player collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            grounded = true;
+            grounded = true; // Prevents mid-air jumps
 
             // Reorients player so firepoint is always forward when on ground
             if (gameObject.transform.rotation.eulerAngles.z != 0 && collision.gameObject.tag != "Ramp")
@@ -55,21 +54,23 @@ public class PlayerMovement : MonoBehaviour
                 gameObject.transform.eulerAngles = reOrient;
             }
         }
-        //ramp
+        
+        // Ramps will launch the player upwards and spins them
         if (collision.gameObject.tag == "Ramp")
         {
             grounded = false;
             body.velocity = new Vector2(body.velocity.x * 2.5f, 3);
             StartCoroutine(Spin());
         }
-        //enemy
+        
+        // Spinning into an enemy will bounce you upward and spins you again
         if (collision.gameObject.tag == "Enemy")
         {
             body.velocity = new Vector2(body.velocity.x, 8);
             StartCoroutine(SpinRebound());
         }
 
-        // Temporarily stops spin on obstacles
+        // Stops spin on obstacles
         if (collision.gameObject.tag == "Obstacle")
         {
             body.freezeRotation = true;
@@ -78,9 +79,11 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.eulerAngles = reOrient;
         }
     }
-    //spinning logic
+    
+    // Spinning logic
     IEnumerator Spin()
     {
+        // Max rotational speed is 30 rads/sec
         if (body.angularVelocity < 30)
         {
             var impulse = 10 + body.inertia;
@@ -92,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator SpinRebound()
     {
+        // Rebound will only trigger if the player is already spinning when they collide with an enemy
         if (body.angularVelocity < 30 && body.angularVelocity > 1)
         {
             var impulse = 20 + body.inertia;
