@@ -10,7 +10,7 @@ public class Damage : MonoBehaviour
     public SpriteRenderer player;
     public int armor = 0;
     public Rigidbody2D square; //still the player
-    private int life = 3;
+    public int life = 3;
     [SerializeField] private float fallPoint;
 
     void Start() //intitializes player and updates stats if player went to the shop
