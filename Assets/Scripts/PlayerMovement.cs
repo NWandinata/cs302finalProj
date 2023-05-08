@@ -35,13 +35,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, -2);
     }
-
+    //jump based on velocity
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed - 1);
         grounded = false;
     }
-
+    //player collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -55,14 +55,14 @@ public class PlayerMovement : MonoBehaviour
                 gameObject.transform.eulerAngles = reOrient;
             }
         }
-
+        //ramp
         if (collision.gameObject.tag == "Ramp")
         {
             grounded = false;
             body.velocity = new Vector2(body.velocity.x * 2.5f, 3);
             StartCoroutine(Spin());
         }
-
+        //enemy
         if (collision.gameObject.tag == "Enemy")
         {
             body.velocity = new Vector2(body.velocity.x, 8);
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.eulerAngles = reOrient;
         }
     }
-
+    //spinning logic
     IEnumerator Spin()
     {
         if (body.angularVelocity < 30)

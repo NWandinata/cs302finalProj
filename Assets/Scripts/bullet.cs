@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
+    //initalize 
     public float speed = 20f;
     private float direction;
     private bool hit;
@@ -16,7 +17,7 @@ public class bullet : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
     }
-
+    //update after hit
     private void Update()
     {
         if (hit) return;
@@ -40,7 +41,7 @@ public class bullet : MonoBehaviour
         boxCollider.enabled = false;
         gameObject.SetActive(false);
     }
-
+    //sets bullet direction
     public void SetDirection(float bulletDirection)
     {
         lifetime = 0;
