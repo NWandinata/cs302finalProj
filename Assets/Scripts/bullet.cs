@@ -47,12 +47,7 @@ public class bullet : MonoBehaviour
         boxCollider.enabled = false;
         gameObject.SetActive(false);
     }
-<<<<<<< Updated upstream
-    //sets bullet direction
-=======
 
-    // Bullets will always travel right (forward from player)
->>>>>>> Stashed changes
     public void SetDirection(float bulletDirection)
     {
         // Sets the bullet as an active object
