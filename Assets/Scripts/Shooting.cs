@@ -19,7 +19,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && cooldownTimer > attackCooldown)
             Shoot();
 
         cooldownTimer += Time.deltaTime;
