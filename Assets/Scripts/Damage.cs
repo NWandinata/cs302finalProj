@@ -13,7 +13,7 @@ public class Damage : MonoBehaviour
     private int life = 3;
     [SerializeField] private float fallPoint;
 
-    void Start()
+    void Start() //intitializes player and updates stats if player went to the shop
     {
         life = Shop.map["health"] + life;
         armor = Shop.map["armor"] + armor;
@@ -22,7 +22,7 @@ public class Damage : MonoBehaviour
 
     void Update()
     {
-        // Check for fall death
+        // Checks for fall death
         if (gameObject.transform.position.y < fallPoint)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -32,19 +32,19 @@ public class Damage : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //checks for taken damage
     {
         if (collision.gameObject.tag == "Obstacle")
         {
             Damage_Taken(player);
-            square.velocity = new Vector2(square.velocity.x , 5);
+            square.velocity = new Vector2(square.velocity.x , 5); //when hit, the player moves upward
         }
 
         if (collision.gameObject.tag == "Enemy" && square.angularVelocity < 10)
             Damage_Taken(player);
     }
 
-    public void Damage_Taken(SpriteRenderer play)
+    public void Damage_Taken(SpriteRenderer play) //the color of the player reflects their health
     {
         life--;
 
@@ -58,7 +58,7 @@ public class Damage : MonoBehaviour
             play.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
-        // Respawn
+        // Player respawns
         else if (life <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
