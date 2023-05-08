@@ -62730,7 +62730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBullet: {fileID: 5620150229949039473, guid: 968a228248945814bbb646da51f49236, type: 3}
-  orbitter: {fileID: 0}
+  orbitter: {fileID: 952455442}
   bulletPos: {fileID: 933904352}
 --- !u!1 &957849823
 GameObject:
