@@ -9,6 +9,7 @@ TagManager:
   - Ramp
   - Enemy
   - Obstacle
+  - Projectile
   layers:
   - Default
   - TransparentFX

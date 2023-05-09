@@ -17,19 +17,22 @@ public class SpinDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        enemy Enemy = enemyBody.GetComponent<enemy>();
+
+        // If and Else if seperation keeps damage types mutually exclusive
+        // Bullets deal 1 damage each (plus modifiers from shop which are handled in enemy.cs)
+        if (collision.gameObject.tag == "Projectile")
+        {
+            if (Enemy != null)
+                Enemy.TakeDamage(1);
+        }
+
         // When the enemy collides with a spinning player, the enemy takes 3 damage
         // (if the player spins at 10 radians/sec or greater).
-        if (collision.gameObject.tag == "Player" && square.angularVelocity >= 10)
+        else if (collision.gameObject.tag == "Player" && square.angularVelocity >= 10)
         {
-            enemy Enemy = enemyBody.GetComponent<enemy>();
-
-            if (Enemy != null)
-            {
+           if (Enemy != null)
                 Enemy.TakeDamage(3);
-            }
-
-            // All enemies have 3 hp, so this would be an instant kill
-            Destroy(gameObject);
         }
     }
 }
