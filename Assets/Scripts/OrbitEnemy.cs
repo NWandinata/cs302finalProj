@@ -7,7 +7,7 @@ public class OrbitEnemy : MonoBehaviour
     public bool orbitting = false;
     public int enSpeed = 2;
     // Start is called before the first frame update
-    public Transform target;
+    private Transform target;
     public float orbitDegreesPerSec = 180.0f;
     public Vector3 relativeDistance;
     private GameObject player;
@@ -18,8 +18,9 @@ public class OrbitEnemy : MonoBehaviour
     }
     void Start()
     {
-       player = GameObject.FindGameObjectWithTag("Player");
-       relativeDistance = transform.position - target.position;
+        player = GameObject.FindGameObjectWithTag("Player");
+        relativeDistance = transform.position - target.position;
+        target = player.transform;
     }
 
     void Orbit()
@@ -35,6 +36,7 @@ public class OrbitEnemy : MonoBehaviour
     }
     void Update()
     {
+        target = player.transform;
         float distance = Vector2.Distance(transform.position, player.transform.position);
         if (distance < 4)
         {

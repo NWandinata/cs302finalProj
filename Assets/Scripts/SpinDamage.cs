@@ -11,6 +11,7 @@ public class SpinDamage : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         enemySprite = GetComponent<SpriteRenderer>();
         square = player.GetComponent<Rigidbody2D>();
     }
