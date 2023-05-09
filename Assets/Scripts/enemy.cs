@@ -8,7 +8,7 @@ public class enemy : MonoBehaviour
 
     public GameObject deathEffect;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage)//damage taken by enemies
     {
         health =health-damage-Shop.map["damage"];
 
