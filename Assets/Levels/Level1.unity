@@ -71179,7 +71179,7 @@ GameObject:
   - component: {fileID: 1817102039}
   - component: {fileID: 1817102038}
   - component: {fileID: 1817102037}
-  - component: {fileID: 1817102036}
+  - component: {fileID: 1817102040}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -71187,19 +71187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1817102036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817102035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8454e058b47d04a8b9a14d2127860d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelToLoad: shop_scene
 --- !u!61 &1817102037
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71293,6 +71280,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1817102040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817102035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93188bb7acaef34409a643b88c03f3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelToLoad: shop_scene
 --- !u!1 &1824968841
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,9 +52,9 @@ public class Shop : MonoBehaviour
     //exits shop buttn go to next scene
     public void NextLevel()
     {
-        if(ShopLoader.currentLevelIndex == 1)
-            SceneManager.LoadScene(ShopLoader.currentLevelIndex + 2);
+        if(LevelLoader.currentLevelIndex == 1)
+            SceneManager.LoadScene(LevelLoader.currentLevelIndex + 2);
         else
-            SceneManager.LoadScene(ShopLoader.currentLevelIndex + 1);
+            SceneManager.LoadScene(LevelLoader.currentLevelIndex + 1);
     }
 }
