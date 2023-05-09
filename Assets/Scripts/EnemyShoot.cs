@@ -20,10 +20,10 @@ public class EnemyShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (em.orbitting)
+        if (em.orbitting) // only shoot when orbitting
         {
             timer += Time.deltaTime;
-            if (timer > 2)
+            if (timer > 2) //shoot every 2 seconds
             {
                 timer = 0;
                 Shoot();
@@ -34,7 +34,7 @@ public class EnemyShoot : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(enemyBullet, bulletPos.position, Quaternion.identity);
+        Instantiate(enemyBullet, bulletPos.position, Quaternion.identity); //create enemy bullet prefab
     }
 }
 

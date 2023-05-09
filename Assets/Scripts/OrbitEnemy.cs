@@ -5,10 +5,10 @@ public class OrbitEnemy : MonoBehaviour
 {
     public Rigidbody2D rb;
     public bool orbitting = false;
-    public int enSpeed = 2;
-    // Start is called before the first frame update
+    public int enSpeed = 2; //adjustable speed val
+
     private Transform target;
-    public float orbitDegreesPerSec = 180.0f;
+    public float orbitDegreesPerSec = 180.0f; //adjustable rotational speed val
     public Vector3 relativeDistance;
     private GameObject player;
    // Use this for initialization
@@ -19,7 +19,7 @@ public class OrbitEnemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        relativeDistance = transform.position - target.position;
+        relativeDistance = transform.position - target.position; //find distance between player and orbitter
         target = player.transform;
     }
 
@@ -28,17 +28,17 @@ public class OrbitEnemy : MonoBehaviour
         if (target != null)
         {
             // Keep us at the last known relative position
-            transform.position = target.position + relativeDistance;
-            transform.RotateAround(target.position, Vector3.forward, orbitDegreesPerSec * Time.deltaTime);
+            transform.position = target.position + relativeDistance; //follows target position
+            transform.RotateAround(target.position, Vector3.forward, orbitDegreesPerSec * Time.deltaTime); //rotates the orbitter arround the target 
             // Reset relative position after rotate
-            relativeDistance = transform.position - target.position;
+            relativeDistance = transform.position - target.position; //adjust relative distance
         }
     }
     void Update()
     {
-        target = player.transform;
-        float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance < 4)
+        target = player.transform; // follow target
+        float distance = Vector2.Distance(transform.position, player.transform.position); //measure total distance
+        if (distance < 4) //when they are close enough, follow target
         {
             orbitting = true;
         }
@@ -47,7 +47,7 @@ public class OrbitEnemy : MonoBehaviour
         {
             Orbit();
         }
-        else
+        else //otherwise, update relativeDistance and move to the right
         {
             relativeDistance = transform.position - target.position;
             rb.velocity = transform.right * enSpeed;

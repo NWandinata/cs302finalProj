@@ -20,7 +20,7 @@ public class EnemyJump : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         pm = player.GetComponent<PlayerMovement>();
         playerBody = player.GetComponent<Rigidbody2D>();
-        jumpHeight = pm.speed - 1;
+        jumpHeight = pm.speed - 1; //jump height is equal to the max jump for player
     }
 
     private void Start()
@@ -50,7 +50,7 @@ public class EnemyJump : MonoBehaviour
             Jump();
         }
 
-        if (rb.velocity.magnitude == 0)
+        if (rb.velocity.magnitude == 0) //only allow the enemy to jump again if their velocity returns to zero
             canJump = true;
     }
 

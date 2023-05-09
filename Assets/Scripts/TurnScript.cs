@@ -8,7 +8,7 @@ public class TurnScript : MonoBehaviour
     {
         if(enemyCol.tag == "Enemy")
         {
-            enemyCol.transform.Rotate(0f, 180f, 0f);
+            enemyCol.transform.Rotate(0f, 180f, 0f); //turns the enemy so they begin to move leftwards
 
 
         }

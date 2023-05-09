@@ -16,6 +16,6 @@ public class Enemy1Mvt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rig.velocity = transform.right * enSpeed;
+        rig.velocity = transform.right * enSpeed; //simple function that moves enemy to the right
     }
 }

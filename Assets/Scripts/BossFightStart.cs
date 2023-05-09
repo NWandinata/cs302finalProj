@@ -20,9 +20,9 @@ public class BossFightStart : MonoBehaviour
     {
         if(playerCol.tag == "Player")
         {
-            boss.Activate(); //CAUSES CRASH
-            doors.Close();
-            Destroy(gameObject);
+            boss.Activate(); //activate's the boss 
+            doors.Close(); //closes doors to the boss room
+            Destroy(gameObject); //destroy's collider
         }
     }
 }

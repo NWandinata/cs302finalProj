@@ -20,9 +20,9 @@ public class BossFight : MonoBehaviour
     void Start()
     {
         //spikeCount = 0;
-        active = false;
+        active = false; //inactive until player enter's collider
         healthSet = gameObject.GetComponent<enemy>();
-        healthSet.health = 30;
+        healthSet.health = 30; //overrides the normal healthpool of enemies from 3 to 30
     }
 
     // Update is called once per frame
@@ -34,26 +34,28 @@ public class BossFight : MonoBehaviour
             shootCoolDown += Time.deltaTime;
             if (spawnCoolDown > 3.5f)
             {
-                spawnCoolDown = 0.0f;
-                ran = Random.Range(0.0f, 10.0f);
-                if(ran > 7.0f)
+                spawnCoolDown = 0.0f; //cooldown used for spawning enemies
+                ran = Random.Range(0.0f, 10.0f); //random function to decide which enemy to spawn (if any)
+                if(ran > 7.0f) //spawn orbit 30% of time
                 {
                     OrbitShot();
                 }
-                if(ran < 7.0f && ran > 3.0f)
+                if(ran < 7.0f && ran > 3.0f) //spawn rolling enemy 40% of time
                 {
                     RollingShot();
                 }
+                //spawn nothing 30% of time
 
             }
             if(shootCoolDown > 2.5f)
             {
                 shootCoolDown = 0.0f;
-                Shoot();
+                Shoot(); //shoot at player every 2.5 seconds
             }
         }
     }
 
+    //functions used to create orbitters, rolling enemies, and bullet objects
     private void OrbitShot()
     {
         Instantiate(orbiter, orbitSpawn.position, Quaternion.identity);
